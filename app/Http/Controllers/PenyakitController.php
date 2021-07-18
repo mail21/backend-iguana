@@ -60,7 +60,7 @@ class PenyakitController extends Controller
         $dataPenyakit->nama = $request->nama_penyakit;
         $dataPenyakit->desc_penyakit = $request->desc_penyakit;
         $dataPenyakit->desc_pengobatan = $request->desc_pengobatan;
-        $dataPenyakit->gambar = $request->foto_penyakit;
+        $dataPenyakit->gambar = base64_encode($request->foto_penyakit);
         $dataPenyakit->save();
 
         return response()->json(['status' => array('code' => 200, 'message' => 'Success'),], 200);
@@ -90,8 +90,7 @@ class PenyakitController extends Controller
                     'nama' => $request->nama_penyakit,
                     'desc_penyakit' => $request->desc_penyakit,
                     'desc_pengobatan' => $request->desc_pengobatan,
-                    'foto_penyakit' => $request->foto_penyakit,
-
+                    'foto_penyakit' => base64_encode($request->foto_penyakit),
                 ];
 
                 Penyakit::where('id_penyakit',$request->id_penyakit)->update($dataPenyakit);

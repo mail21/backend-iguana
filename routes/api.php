@@ -32,10 +32,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/get_gejala_join_by_id2/{id}', [GejalaController::class, 'get_gejala_join_by_id2']);// sama aja
     Route::get('/get_kuesioner_order/{id}', [GejalaController::class, 'get_kuesioner_order']);
     Route::get('/get_gejala_join/{id}', [GejalaController::class, 'get_gejala_join']);
-
     Route::post('/create_gejala', [GejalaController::class, 'create_gejala']);
-
-    Route::put('/update_gejala/{code}', [GejalaController::class, 'update_gejala']);
-
-    Route::delete('/delete_gejala/{code}', [GejalaController::class, 'delete_gejala']);
+    Route::put('/update_gejala/{id}', [GejalaController::class, 'update_gejala']);
+    Route::delete('/delete_gejala/{id}', [GejalaController::class, 'delete_gejala']);
 });
