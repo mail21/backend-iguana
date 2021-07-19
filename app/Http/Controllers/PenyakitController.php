@@ -37,6 +37,8 @@ class PenyakitController extends Controller
     {
         $findPenyakit = Penyakit::find($id);
 
+        $findPenyakit->gambar = base64_decode($findPenyakit->gambar);
+
         if($findPenyakit){
             return response()->json([
                 'status' => array('code' => 200, 'message' => 'Success get findPenyakit'),
@@ -59,14 +61,14 @@ class PenyakitController extends Controller
     {
         $dataPenyakit = new Penyakit;
 
-        $foto1 = $request->foto_penyakit; 
-        $hasil = Image::make($foto1);
-        Response::make($hasil->encode('jpeg'));
+        // $foto1 = $request->foto_penyakit; 
+        // $hasil = Image::make($foto1);
+        // Response::make($hasil->encode('jpeg'));
 
         $dataPenyakit->nama = $request->nama_penyakit;
         $dataPenyakit->desc_penyakit = $request->desc_penyakit;
         $dataPenyakit->desc_pengobatan = $request->desc_pengobatan;
-        $dataPenyakit->gambar = base64_encode($hasil);
+        $dataPenyakit->gambar = base64_encode($request->foto_penyakit;);
         $dataPenyakit->save();
 
         return response()->json(['status' => array('code' => 200, 'message' => 'Success'),], 200);
@@ -90,16 +92,16 @@ class PenyakitController extends Controller
     {
         // pake foto
         $findPenyakit = Penyakit::where('id_penyakit', $request->id_penyakit)->first();
-            $foto1 = $request->foto_penyakit; 
-            $hasil = Image::make($foto1);
-            Response::make($hasil->encode('jpeg'));
+            // $foto1 = $request->foto_penyakit; 
+            // $hasil = Image::make($foto1);
+            // Response::make($hasil->encode('jpeg'));
 
             if($findPenyakit){
                 $dataPenyakit = [
                     'nama' => $request->nama_penyakit,
                     'desc_penyakit' => $request->desc_penyakit,
                     'desc_pengobatan' => $request->desc_pengobatan,
-                    'foto_penyakit' => base64_encode($hasil),
+                    'foto_penyakit' => base64_encode($request->foto_penyakit),
                 ];
 
                 Penyakit::where('id_penyakit',$request->id_penyakit)->update($dataPenyakit);
