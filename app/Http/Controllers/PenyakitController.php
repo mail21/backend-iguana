@@ -15,7 +15,7 @@ class PenyakitController extends Controller
     public function get_penyakit()
     {
         try{
-            $data = Penyakit::all();
+            $data = Penyakit::select('nama','id_penyakit')->get();
 
             return response()->json([
                 'status'        => array('code' => 200, 'message' => 'Success'),
