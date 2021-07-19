@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gejala;
+use App\Models\Penyakit;
 use Illuminate\Http\Request;
 
 class GejalaController extends Controller
@@ -24,6 +25,31 @@ class GejalaController extends Controller
         } catch (\Throwable $th) {
             return response()->json(['status'    => array('code'=> 500,'message'=> $th->getMessage())], 500);
         }
+    }
+
+    public function get_detail($id_penyakit)
+    {
+        $findPenyakit = Penyakit::find($id_penyakit);
+        $gejalaJoin = Gejala::select(
+            'gejala.id_gejala',
+            'gejala.desc_gejala',
+            'gejala.desc_kuesioner',
+        )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
+         ->where('gejala.id_penyakit', $findPenyakit->id_penyakit)
+         ->get();
+        $findPenyakit->gambar = base64_decode($findPenyakit->gambar);
+     
+        if($findGejala){
+            return response()->json([
+            'status' => array('code' => 200, 'message' => 'Success get findGejala'),
+            'results_penyakit' => $findPenyakit,
+            'results_gejala' => $gejalaJoin,
+            ], 200);
+        }
+
+        return response()->json([
+            'status' => array('code' => 400, 'message' => 'Error'),
+        ], 400);
     }
 
     public function get_gejala_by_id($id)

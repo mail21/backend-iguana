@@ -28,6 +28,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::put('/update_penyakit2', [PenyakitController::class, 'update_penyakit2']); // gak pake foto
 
 
+    Route::get('/get_detail/{id}', [GejalaController::class, 'get_detail']);
     Route::get('/get_gejala', [GejalaController::class, 'get_gejala']);
     Route::get('/get_gejala_by_id/{id}', [GejalaController::class, 'get_gejala_by_id']);
     Route::get('/get_gejala_join_by_id/{id}', [GejalaController::class, 'get_gejala_join_by_id']); //sama aja
