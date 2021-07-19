@@ -76,13 +76,17 @@ class GejalaController extends Controller
         ], 400);
     }
 
-    public function get_gejala_join_by_id($id)
+    public function get_gejala_join_by_id_gejala($id)
     {
         $gejalaJoin = Gejala::select(
-            '*'
+            'gejala.id_gejala',
+            'gejala.id_penyakit',
+            'gejala.desc_kuesioner',
+            'gejala.desc_gejala',
+            'penyakit.nama'
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
          ->where('gejala.id_gejala', $id)
-         ->first();
+         ->get();
 
         if($gejalaJoin){
             return response()->json([
@@ -96,13 +100,17 @@ class GejalaController extends Controller
         ], 400);
     }
 
-    public function get_gejala_join_by_id2($id)
+    public function get_gejala_join_by_id_penyakit($id)
     {
         $gejalaJoin = Gejala::select(
-            '*'
+            'gejala.id_gejala',
+            'gejala.id_penyakit',
+            'gejala.desc_kuesioner',
+            'gejala.desc_gejala',
+            'penyakit.nama'
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
          ->where('gejala.id_penyakit', $id)
-         ->first();
+         ->get();
 
         if($gejalaJoin){
             return response()->json([

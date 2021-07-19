@@ -31,8 +31,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/get_detail/{id}', [GejalaController::class, 'get_detail']);
     Route::get('/get_gejala', [GejalaController::class, 'get_gejala']);
     Route::get('/get_gejala_by_id/{id}', [GejalaController::class, 'get_gejala_by_id']);
-    Route::get('/get_gejala_join_by_id/{id}', [GejalaController::class, 'get_gejala_join_by_id']); //sama aja
-    Route::get('/get_gejala_join_by_id2/{id}', [GejalaController::class, 'get_gejala_join_by_id2']);// sama aja
+    Route::get('/get_gejala_join_by_id_gejala/{id}', [GejalaController::class, 'get_gejala_join_by_id_gejala']); //sama aja
+    Route::get('/get_gejala_join_by_id_penyakit/{id}', [GejalaController::class, 'get_gejala_join_by_id_penyakit']);// sama aja
     Route::get('/get_kuesioner_order/{id}', [GejalaController::class, 'get_kuesioner_order']);
     Route::get('/get_gejala_join', [GejalaController::class, 'get_gejala_join']);
     Route::post('/create_gejala', [GejalaController::class, 'create_gejala']);
