@@ -101,7 +101,7 @@ class PenyakitController extends Controller
                     'nama' => $request->nama_penyakit,
                     'desc_penyakit' => $request->desc_penyakit,
                     'desc_pengobatan' => $request->desc_pengobatan,
-                    'foto_penyakit' => base64_encode($request->foto_penyakit),
+                    'gambar' => base64_encode($request->foto_penyakit),
                 ];
 
                 Penyakit::where('id_penyakit',$request->id_penyakit)->update($dataPenyakit);
