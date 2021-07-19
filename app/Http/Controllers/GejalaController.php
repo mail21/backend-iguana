@@ -104,7 +104,7 @@ class GejalaController extends Controller
         ], 400);
     }
 
-    public function get_gejala_join($id)
+    public function get_gejala_join()
     {
         $gejalaJoin = Gejala::select(
             'gejala.id_gejala',
