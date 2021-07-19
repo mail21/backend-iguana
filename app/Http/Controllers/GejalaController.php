@@ -56,7 +56,7 @@ class GejalaController extends Controller
             '*'
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
          ->where('gejala.id_gejala', $id)
-         ->get();
+         ->first();
 
         if($gejalaJoin){
             return response()->json([
@@ -76,7 +76,7 @@ class GejalaController extends Controller
             '*'
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
          ->where('gejala.id_penyakit', $id)
-         ->get();
+         ->first();
 
         if($gejalaJoin){
             return response()->json([
