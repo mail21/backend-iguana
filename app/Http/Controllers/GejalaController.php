@@ -28,7 +28,15 @@ class GejalaController extends Controller
 
     public function get_gejala_by_id($id)
     {
-        $findGejala = Gejala::find($id);
+        $findGejala = Gejala::select(
+            'gejala.id_gejala',
+            'gejala.id_penyakit',
+            'gejala.desc_gejala',
+            'gejala.desc_kuesioner',
+            'penyakit.nama',
+        )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
+         ->where('gejala.id_gejala', $id)->get();
+
 
         if($findGejala){
             return response()->json([
@@ -47,7 +55,7 @@ class GejalaController extends Controller
         $gejalaJoin = Gejala::select(
             '*'
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
-         ->where('gejala.id_penyakit', $id)
+         ->where('gejala.id_gejala', $id)
          ->get();
 
         if($gejalaJoin){
