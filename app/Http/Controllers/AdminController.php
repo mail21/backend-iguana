@@ -14,7 +14,16 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        try{
+            $data = Admin::all();
+
+            return response()->json([
+                'status'        => array('code' => 200, 'message' => 'Success'),
+                'results'       => $data
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status'    => array('code'=> 500,'message'=> $th->getMessage())], 500);
+        }
     }
 
     /**
