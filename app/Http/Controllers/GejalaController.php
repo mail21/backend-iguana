@@ -112,9 +112,7 @@ class GejalaController extends Controller
             'gejala.desc_gejala',
             'gejala.desc_kuesioner',
             'penyakit.nama',
-        )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
-         ->where('gejala.id_penyakit', $id)
-         ->get();
+        )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')->get();
 
         if($gejalaJoin){
             return response()->json([

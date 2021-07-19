@@ -11,8 +11,8 @@ class Gejala extends Model
     public $table = "gejala";
     protected $primaryKey = 'id_gejala';
     protected $fillable = [
-        'id_penyakit'.
-        'desc_gejala'.
-        'desc_kuesioner'.
+        'id_penyakit',
+        'desc_gejala',
+        'desc_kuesioner',
     ];
 }
