@@ -35,7 +35,7 @@ class GejalaController extends Controller
             'gejala.desc_kuesioner',
             'penyakit.nama',
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
-         ->where('gejala.id_gejala', $id)->get();
+         ->where('gejala.id_gejala', $id)->first();
 
 
         if($findGejala){
