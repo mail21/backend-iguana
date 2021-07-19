@@ -39,7 +39,7 @@ class GejalaController extends Controller
          ->get();
         $findPenyakit->gambar = base64_decode($findPenyakit->gambar);
      
-        if($findGejala){
+        if($findPenyakit){
             return response()->json([
             'status' => array('code' => 200, 'message' => 'Success get findGejala'),
             'results_penyakit' => $findPenyakit,
