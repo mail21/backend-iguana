@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
+use Faker\Provider\Lorem;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
