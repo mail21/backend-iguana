@@ -32,7 +32,7 @@ class PenyakitController extends Controller
     {
         try{
             $data = Penyakit::select('penyakit.nama','penyakit.id_penyakit','gejala.id_penyakit')->join('gejala', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
-                    ->groupBy('gejala.id_penyakit')
+                    ->groupBy('penyakit.id_penyakit')
                     ->get();
 
             return response()->json([
