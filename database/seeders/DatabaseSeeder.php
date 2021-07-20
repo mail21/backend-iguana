@@ -26,5 +26,15 @@ class DatabaseSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+
+        // DB::table('penyakit')->insert([
+        //     'id_penyakit' => 'root',
+        //     'nama' => 'Kamera',
+        //     'gambar' => 'root',
+        //     'desc_penyakit' => 'root',
+        //     'desc_pengobatan' => 'root',
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now()
+        // ]);
     }
 }

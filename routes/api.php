@@ -25,6 +25,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/getAdmin', [AdminController::class, 'index']);
 
     Route::get('/get_penyakit', [PenyakitController::class, 'get_penyakit']);
+    Route::get('/get_penyakit_aktif', [PenyakitController::class, 'get_penyakit_aktif']);
     Route::get('/get_penyakit_by_id/{id}', [PenyakitController::class, 'get_penyakit_by_id']);
     Route::post('/create_penyakit', [PenyakitController::class, 'create_penyakit']);
     Route::delete('/delete_penyakit/{id}', [PenyakitController::class, 'delete_penyakit']);

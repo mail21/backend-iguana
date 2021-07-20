@@ -28,6 +28,25 @@ class PenyakitController extends Controller
         }
     }
 
+    public function get_penyakit_aktif()
+    {
+        try{
+            $data = Penyakit::select('nama','id_penyakit')
+                    ->join('gejala', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
+                    ->groupBy('gejala.id_penyakit')
+                    ->get();
+
+            return response()->json([
+                'status'        => array('code' => 200, 'message' => 'Success'),
+                'results'       => $data
+            ], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['status'    => array('code'=> 500,'message'=> $th->getMessage())], 500);
+        }
+    }
+
+    
+
     /**
      * Show the form for creating a new resource.
      *
