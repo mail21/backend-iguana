@@ -17,7 +17,7 @@ class AdminController extends Controller
             if($findAdmin->username == $request->username && $findAdmin->password == $request->password){
                 return response()->json(['status' => true,'pesan' => "login sukses"], 200);
             }
-            return response()->json(['status' => false,'pesan' => "Username/Password Salah"], 200);
+            return response()->json(['status' => false,'pesan' => "Username/Password Salah", $findAdmin,$request], 200);
         }
         return response()->json(['status' => false,'pesan' => "Username Tidak Ditemukan"], 200);
     }
