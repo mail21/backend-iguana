@@ -86,6 +86,7 @@ class GejalaController extends Controller
             'penyakit.nama'
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
          ->where('gejala.id_gejala', $id)
+         ->orderBy('gejala.id_gejala','desc')
          ->get();
 
         if($gejalaJoin){
@@ -110,6 +111,7 @@ class GejalaController extends Controller
             'penyakit.nama'
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
          ->where('gejala.id_penyakit', $id)
+         ->orderBy('gejala.id_gejala','desc')
          ->get();
 
         if($gejalaJoin){
@@ -132,6 +134,7 @@ class GejalaController extends Controller
             'gejala.desc_kuesioner',
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
          ->where('gejala.id_penyakit', $id)
+         ->orderBy('gejala.id_gejala','desc')
          ->get();
 
         if($gejalaJoin){
