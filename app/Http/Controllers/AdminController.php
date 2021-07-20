@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    
+
     public function login_admin(Request $request)
     {
         $findAdmin = Admin::find($request->username);
 
         if($findAdmin){
-            if($findAdmin->username === $request->username && $findAdmin->password === $request->password){
+            if($findAdmin->username == $request->username && $findAdmin->password == $request->password){
                 return response()->json(['status' => true,'pesan' => "login sukses"], 200);
             }
             return response()->json(['status' => false,'pesan' => "Username/Password Salah"], 200);
@@ -27,7 +27,7 @@ class AdminController extends Controller
         $findUser = User::find($request->username);
 
         if($findUser){
-            if($findUser->username === $request->username && $findUser->password === $request->password){
+            if($findUser->username == $request->username && $findUser->password == $request->password){
                 return response()->json(['status' => true,'pesan' => "login sukses"], 200);
             }
             return response()->json(['status' => false,'pesan' => "Username/Password Salah"], 200);
