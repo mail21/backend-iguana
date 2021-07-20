@@ -158,7 +158,8 @@ class GejalaController extends Controller
             'gejala.desc_kuesioner',
             'penyakit.nama',
         )->join('penyakit', 'penyakit.id_penyakit', '=', 'gejala.id_penyakit')
-         ->groupBy('penyakit.id_penyakit')
+         // ->orderBy('gejala.id_gejala','asc')
+         ->groupBy('gejala.id_penyakit')
          ->get();
 
         if($gejalaJoin){
