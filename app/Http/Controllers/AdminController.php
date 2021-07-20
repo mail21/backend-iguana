@@ -3,92 +3,52 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    
+    public function login_admin(Request $request)
     {
-        try{
-            $data = Admin::all();
+        $findAdmin = Admin::find($request->username);
 
-            return response()->json([
-                'status'        => array('code' => 200, 'message' => 'Success'),
-                'results'       => $data
-            ], 200);
-        } catch (\Throwable $th) {
-            return response()->json(['status'    => array('code'=> 500,'message'=> $th->getMessage())], 500);
+        if($findAdmin){
+            if($findAdmin->username === $request->username && $findAdmin->password === $request->password){
+                return response()->json(['status' => true,'pesan' => "login sukses"], 200);
+            }
+            return response()->json(['status' => false,'pesan' => "Username/Password Salah"], 200);
         }
+        return response()->json(['status' => false,'pesan' => "Username Tidak Ditemukan"], 200);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function login_user(Request $request)
     {
-        //
+        $findUser = User::find($request->username);
+
+        if($findUser){
+            if($findUser->username === $request->username && $findUser->password === $request->password){
+                return response()->json(['status' => true,'pesan' => "login sukses"], 200);
+            }
+            return response()->json(['status' => false,'pesan' => "Username/Password Salah"], 200);
+        }
+        return response()->json(['status' => false,'pesan' => "Username Tidak Ditemukan"], 200);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function registrasi_user(Request $request)
     {
-        //
+        $findUser = User::find($request->username);
+
+        if($findUser){
+            return response()->json(['status' => false,'pesan' => "Username Sudah Ada"], 200);
+        }
+
+        $dataUsername = new User;
+        $dataUsername->username = $request->username;
+        $dataUsername->password = $request->password;
+        $dataUsername->nama = $request->nama;
+        $dataUsername->save();
+        return response()->json(['status' => true,'pesan' => "Sukses"], 200);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Admin $admin)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Admin $admin)
-    {
-        //
-    }
 }

@@ -18,6 +18,10 @@ use App\Http\Controllers\AdminController;
 
 Route::group(['prefix' => 'v1'], function () {
 
+    Route::post('/login_admin', [AdminController::class, 'login_admin']);
+    Route::post('/login_user', [AdminController::class, 'login_user']);
+    Route::post('/registrasi', [AdminController::class, 'registrasi_user']);
+
     Route::get('/getAdmin', [AdminController::class, 'index']);
 
     Route::get('/get_penyakit', [PenyakitController::class, 'get_penyakit']);
